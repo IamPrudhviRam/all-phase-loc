@@ -173,7 +173,11 @@
   <!-- Orange Lat Lngs -->
   <section *ngIf="this.checkboxesList[2].isChecked">
     <ng-container *ngFor="let latLng of orangeLatLngs; let i = index">
-      <agm-marker [latitude]="latLng[0]" [longitude]="latLng[1]">
+      <agm-marker
+        [iconUrl]="icon"
+        [latitude]="latLng[0]"
+        [longitude]="latLng[1]"
+      >
         <agm-info-window>
           <strong *ngIf="showId; else showNames"
             >{{ latLng[2] }} &nbsp;:&nbsp; {{ latLng[0] }}, &nbsp;{{
