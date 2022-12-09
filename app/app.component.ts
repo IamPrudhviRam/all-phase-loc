@@ -50,13 +50,11 @@ export class AppComponent implements OnInit {
 
   hideTen: boolean = false;
   showId: boolean = true;
-  icon: any = {
-    url: 'https://img.icons8.com/material-sharp/' + 24 + '/D12020/marker.png',
-    scaledSize: {
-      width: 24,
-      height: 24,
-    },
-  };
+  icon: any = this.makeMarker(24, 'D12020');
+  redIcon: any = this.makeMarker(24, 'D12020');
+  purpleIcon: any = this.makeMarker(24, '8a0fd7');
+  blueIcon: any = this.makeMarker(24, '4da6ff');
+  yellowIcon: any = this.makeMarker(24, 'cccc00');
 
   checkboxesList = [
     {
@@ -112,11 +110,21 @@ export class AppComponent implements OnInit {
       number = 10 + 2 * zoom;
     }
 
-    this.icon = {
+    this.icon = this.makeMarker(number, 'D12020');
+    this.redIcon = this.makeMarker(number, 'D12020');
+    this.purpleIcon = this.makeMarker(number, '8a0fd7');
+    this.blueIcon = this.makeMarker(number, '4da6ff');
+    this.yellowIcon = this.makeMarker(number, 'cccc00');
+  }
+
+  makeMarker(number, color) {
+    return {
       url:
         'https://img.icons8.com/material-sharp/' +
         number +
-        '/D12020/marker.png',
+        '/' +
+        color +
+        '/marker.png',
       scaledSize: {
         width: number,
         height: number,

@@ -42,7 +42,7 @@
   <section *ngIf="this.checkboxesList[0].isChecked">
     <ng-container *ngFor="let latLng of yellowLatLngs; let i = index">
       <agm-marker
-        [iconUrl]="icon"
+        [iconUrl]="yellowIcon"
         [latitude]="latLng[0]"
         [longitude]="latLng[1]"
       >
@@ -86,7 +86,7 @@
 
   <!-- Blue Lat Lngs -->
   <ng-container *ngFor="let latLng of blueLatLngs; let i = index">
-    <agm-marker [iconUrl]="icon" [latitude]="latLng[0]" [longitude]="latLng[1]">
+    <agm-marker [iconUrl]="blueIcon" [latitude]="latLng[0]" [longitude]="latLng[1]">
       <agm-info-window>
         <strong *ngIf="showId; else showNames"
           >{{ latLng[2] }} &nbsp;:&nbsp; {{ latLng[0] }}, &nbsp;{{
@@ -123,11 +123,11 @@
     </agm-circle>
   </ng-container>
 
-  <!-- Yellow Lat Lngs -->
+  <!-- Purple Lat Lngs -->
   <section *ngIf="this.checkboxesList[1].isChecked">
     <ng-container *ngFor="let latLng of purpleLatLngs; let i = index">
       <agm-marker
-        [iconUrl]="icon"
+        [iconUrl]="purpleIcon"
         [latitude]="latLng[0]"
         [longitude]="latLng[1]"
       >
