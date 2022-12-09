@@ -1,13 +1,12 @@
-<!-- Hide and show 10 kms toggle -->
-<!-- <button *ngIf="hideTen; else showTen" (click)="hideTenKms()">
-  Hide 10 kms
-</button>
-<ng-template #showTen>
-  <button (click)="hideTenKms()">Show 10 kms</button>
-</ng-template>
-&nbsp; -->
-
 <section class="flex-row-direction">
+  <!-- Hide and show 10 kms toggle -->
+  <!-- <button *ngIf="hideTen; else showTen" (click)="hideTenKms()">
+    Hide 10 kms
+  </button>
+  <ng-template #showTen>
+    <button (click)="hideTenKms()">Show 10 kms</button>
+  </ng-template>
+  &nbsp; -->
   <section>
     <button *ngIf="showId; else showIdTags" (click)="showIds()">
       Show Name's
@@ -173,7 +172,7 @@
         [latitude]="latLng[0]"
         [longitude]="latLng[1]"
         [radius]="distanceInMeters"
-        [strokeWeight]="1.5"
+        [strokeWeight]="hideTen ? 0 : 1.5"
         [strokeColor]="strokeOrange"
         [fillColor]="circleWhite"
         [fillOpacity]="0.2"
@@ -185,7 +184,7 @@
         [latitude]="latLng[0]"
         [longitude]="latLng[1]"
         [radius]="10000"
-        [strokeWeight]="hideTen ? 0 : 1.5"
+        [strokeWeight]="1.5"
         [strokeColor]="strokeOrange"
         [fillColor]="circleWhite"
         [fillOpacity]="0.1"
