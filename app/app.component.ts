@@ -53,7 +53,7 @@ export class AppComponent implements OnInit {
   icon: any = this.makeMarker(24, 'D12020');
   redIcon: any = this.makeMarker(24, 'D12020');
   purpleIcon: any = this.makeMarker(24, '8a0fd7');
-  blueIcon: any = this.makeMarker(24, '4da6ff');
+  blueIcon: any = this.makeMarker(24, '0000e6');
   yellowIcon: any = this.makeMarker(24, 'cccc00');
 
   checkboxesList = [
@@ -113,7 +113,7 @@ export class AppComponent implements OnInit {
     this.icon = this.makeMarker(number, 'D12020');
     this.redIcon = this.makeMarker(number, 'D12020');
     this.purpleIcon = this.makeMarker(number, '8a0fd7');
-    this.blueIcon = this.makeMarker(number, '4da6ff');
+    this.blueIcon = this.makeMarker(number, '3333ff');
     this.yellowIcon = this.makeMarker(number, 'cccc00');
   }
 
