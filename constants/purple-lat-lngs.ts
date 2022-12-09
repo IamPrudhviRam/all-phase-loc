@@ -1,5 +1,5 @@
 export const purpleLatLngs = [
-  [19.4454, 78.413298, 'A120053A', 'Adilabad', 'Khapri'],
+  [19.74379, 78.689432, 'A120053A', 'Adilabad', 'Khapri'],
   [19.761476, 78.585447, '0720E16F', 'Adilabad', 'Bahadurpur'],
   [19.732623, 78.685614, '0720E174', 'Adilabad', 'Belgaon'],
   [20.418483, 78.700117, 'A1200526', 'Wardha', 'Fukta'],
