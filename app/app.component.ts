@@ -1,8 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { LatLngBounds } from '@agm/core';
 import { blueLatLngs } from '../constants/blue-lat-lngs';
+import { phase1LatLngs } from '../constants/blue-lat-lngs';
+import { phase2LatLngs } from '../constants/blue-lat-lngs';
+import { phase3LatLngs } from '../constants/blue-lat-lngs';
 import { yellowLatLngs } from '../constants/yellow-lat-lngs';
 import { orangeLatLngs } from '../constants/orange-lat-lngs';
+import { AgmMap } from '@agm/core';
+import { purpleLatLngs } from '../constants/purple-lat-lngs';
 declare var google: any;
 
 @Component({
@@ -10,7 +15,8 @@ declare var google: any;
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  @ViewChild('agmMap', { static: false }) agmMap: AgmMap;
   zoom: number = 8;
 
   // initial center position for the map
@@ -19,18 +25,24 @@ export class AppComponent {
 
   distanceInMeters: number = 5000;
 
-  blueLatLngs: any = blueLatLngs;
-  yellowLatLngs: any = yellowLatLngs;
-  orangeLatLngs: any = orangeLatLngs;
+  blueLatLngs: any[] = blueLatLngs;
+  yellowLatLngs: any[] = yellowLatLngs;
+  orangeLatLngs: any[] = orangeLatLngs;
+  purpleLatLngs: any[] = purpleLatLngs;
+
+  phase1Checked: boolean = true;
+  phase2Checked: boolean = true;
+  phase3Checked: boolean = true;
 
   circleWhite = '#e6e6e6';
   circleOrange = '#8cff66';
-  circleBlue = '#4da6ff'; // light #b3daff
+  circleBlue = '#4da6ff';
 
   strokeGrey = '#bfbfbf';
 
   strokeYellow = '#e6e600';
-  strokeOrange = '#66ff33';
+  strokePurple = '#8a0fd7';
+  strokeOrange = '#FF0000';
   strokeBlue = '#b3daff';
 
   strokeWeight = 1;
@@ -39,20 +51,42 @@ export class AppComponent {
   hideTen: boolean = false;
   showId: boolean = true;
   icon: any = {
-    // url: 'https://img.icons8.com/color/24/null/map-pin.png',
-    // url: 'https://img.icons8.com/fluency/24/null/map-pin.png',
-    // url: 'https://img.icons8.com/fluency/' + 24 + '/000000/map-pin.png',
     url: 'https://img.icons8.com/material-sharp/' + 24 + '/D12020/marker.png',
-
-    // url: 'https://img.icons8.com/color/' + 24 + '/000000/marker--v1.png',
-    // url: '',
     scaledSize: {
       width: 24,
       height: 24,
     },
   };
 
+  checkboxesList = [
+    {
+      id: 'phase1',
+      label: 'Phase 1',
+      isChecked: true,
+    },
+    {
+      id: 'phase2',
+      label: 'Phase 2',
+      isChecked: true,
+    },
+    {
+      id: 'phase3',
+      label: 'Phase 3',
+      isChecked: true,
+    },
+  ];
+  selectedItemsList: any = [];
+  checkedIDs: any = [];
+
+  ngOnInit() {
+    this.fetchSelectedItems();
+
+    console.log('phase 1: ', this.yellowLatLngs.length + phase1LatLngs.length);
+    console.log('phase 2: ', this.purpleLatLngs.length + phase2LatLngs.length);
+  }
+
   mapReady(map: any) {
+    console.log('map ready');
     const bonds: LatLngBounds = new google.maps.LatLngBounds();
 
     this.blueLatLngs.map((item: any) => {
@@ -79,21 +113,51 @@ export class AppComponent {
     }
 
     this.icon = {
-      // url: 'https://img.icons8.com/color/' + number + '/null/map-pin.png',
-      // url: 'https://img.icons8.com/fluency/' + number + '/null/map-pin.png',
-      // url: 'https://img.icons8.com/fluency/' + number + '/000000/map-pin.png',
-      // url: 'https://img.icons8.com/color/' + number + '/000000/marker--v1.png',
       url:
         'https://img.icons8.com/material-sharp/' +
         number +
         '/D12020/marker.png',
-
-      // url: '',
       scaledSize: {
         width: number,
         height: number,
       },
     };
+  }
+
+  changeSelection() {
+    this.fetchSelectedItems();
+  }
+
+  // Selected item
+  fetchSelectedItems() {
+    this.selectedItemsList = this.checkboxesList.filter((value, index) => {
+      return value.isChecked;
+    });
+    this.modifyBlueLatLngs();
+  }
+
+  // IDs of selected item
+  fetchCheckedIDs() {
+    this.checkedIDs = [];
+    this.checkboxesList.forEach((value, index) => {
+      if (value.isChecked) {
+        this.checkedIDs.push(value.id);
+      }
+    });
+  }
+
+  modifyBlueLatLngs() {
+    this.blueLatLngs = [];
+    if (this.checkboxesList[0].isChecked) {
+      this.blueLatLngs = this.blueLatLngs.concat(phase1LatLngs);
+    }
+    if (this.checkboxesList[1].isChecked) {
+      this.blueLatLngs = this.blueLatLngs.concat(phase2LatLngs);
+    }
+    if (this.checkboxesList[2].isChecked) {
+      this.blueLatLngs = this.blueLatLngs.concat(phase3LatLngs);
+    }
+    console.log('modify blue::', this.blueLatLngs);
   }
 
   circleClicked(event: any) {
@@ -112,5 +176,9 @@ export class AppComponent {
 
   showIds(event: any) {
     this.showId = !this.showId;
+  }
+
+  randomIntFromInterval(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
   }
 }
