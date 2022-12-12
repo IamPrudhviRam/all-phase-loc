@@ -8,7 +8,7 @@
   </ng-template>
   &nbsp; -->
   <section>
-    <button *ngIf="showId; else showIdTags" (click)="showIds()">
+    <button *ngIf="!showId; else showIdTags" (click)="showIds()">
       Show Name's
     </button>
     <ng-template #showIdTags>
@@ -47,7 +47,7 @@
         [longitude]="latLng[1]"
       >
         <agm-info-window>
-          <strong *ngIf="showId; else showNames"
+          <strong *ngIf="!showId; else showNames"
             >{{ latLng[2] }} &nbsp;:&nbsp; {{ latLng[0] }}, &nbsp;{{
               latLng[1]
             }}</strong
@@ -92,7 +92,7 @@
       [longitude]="latLng[1]"
     >
       <agm-info-window>
-        <strong *ngIf="showId; else showNames"
+        <strong *ngIf="!showId; else showNames"
           >{{ latLng[2] }} &nbsp;:&nbsp; {{ latLng[0] }}, &nbsp;{{
             latLng[1]
           }}</strong
@@ -136,7 +136,7 @@
         [longitude]="latLng[1]"
       >
         <agm-info-window>
-          <strong *ngIf="showId; else showNames"
+          <strong *ngIf="!showId; else showNames"
             >{{ latLng[2] }} &nbsp;:&nbsp; {{ latLng[0] }}, &nbsp;{{
               latLng[1]
             }}</strong
@@ -182,7 +182,7 @@
         [longitude]="latLng[1]"
       >
         <agm-info-window>
-          <strong *ngIf="showId; else showNames"
+          <strong *ngIf="!showId; else showNames"
             >{{ latLng[2] }} &nbsp;:&nbsp; {{ latLng[0] }}, &nbsp;{{
               latLng[1]
             }}</strong
