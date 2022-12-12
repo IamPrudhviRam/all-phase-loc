@@ -79,12 +79,17 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.fetchSelectedItems();
 
-    console.log('phase 1: ', this.yellowLatLngs.length + phase1LatLngs.length);
-    console.log('phase 2: ', this.purpleLatLngs.length + phase2LatLngs.length);
+    const phase1Count = this.yellowLatLngs.length + phase1LatLngs.length;
+    const phase2Count = this.purpleLatLngs.length + phase2LatLngs.length;
+    const phase3Count = this.orangeLatLngs.length + phase3LatLngs.length;
+
+    console.log('phase 1: ', phase1Count);
+    console.log('phase 2: ', phase2Count);
+    console.log('phase 3: ', phase3Count);
+    console.log('Total: ', phase1Count + phase2Count + phase3Count);
   }
 
   mapReady(map: any) {
-    console.log('map ready');
     const bonds: LatLngBounds = new google.maps.LatLngBounds();
 
     this.blueLatLngs.map((item: any) => {
@@ -101,7 +106,7 @@ export class AppComponent implements OnInit {
   }
 
   zoomChange(zoom: any) {
-    console.log('zoom change:', zoom);
+    // console.log('zoom change:', zoom);
 
     let number = 24;
     if (zoom <= 8) {
@@ -165,7 +170,7 @@ export class AppComponent implements OnInit {
     if (this.checkboxesList[2].isChecked) {
       this.blueLatLngs = this.blueLatLngs.concat(phase3LatLngs);
     }
-    console.log('modify blue::', this.blueLatLngs);
+    // console.log('modify blue::', this.blueLatLngs);
   }
 
   circleClicked(event: any) {
