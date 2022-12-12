@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LatLngBounds } from '@agm/core';
 import { blueLatLngs } from '../constants/blue-lat-lngs';
 import { phase1LatLngs } from '../constants/blue-lat-lngs';
@@ -6,7 +6,6 @@ import { phase2LatLngs } from '../constants/blue-lat-lngs';
 import { phase3LatLngs } from '../constants/blue-lat-lngs';
 import { yellowLatLngs } from '../constants/yellow-lat-lngs';
 import { orangeLatLngs } from '../constants/orange-lat-lngs';
-import { AgmMap } from '@agm/core';
 import { purpleLatLngs } from '../constants/purple-lat-lngs';
 declare var google: any;
 
