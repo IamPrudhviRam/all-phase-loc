@@ -16,7 +16,6 @@ declare var google: any;
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  @ViewChild('agmMap', { static: false }) agmMap: AgmMap;
   zoom: number = 8;
 
   // initial center position for the map
